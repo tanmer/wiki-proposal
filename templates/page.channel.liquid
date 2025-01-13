@@ -1,0 +1,231 @@
+{% assign pages = page.children_in_list %}
+
+<div class="min-h-full bg-primary">
+  <header class="bg-primary shadow sticky top-0 z-10">
+    <div class="mx-auto max-w-3xl p-2  lg:max-w-7xl lg:px-8">
+      <div class="navbar">
+        <div class="navbar-start">
+          <!-- Logo -->
+          <div class="">
+            <a href="{{ page.path }}" class="flex items-center">
+              {% assign logo = 'images/logo.png' | asset_url %}
+              <img src="{{ page.settings.icon | default: logo  }}" class="h-10 mr-2" alt="{{ page.settings.title }} Logo">
+              <span class="self-center text-white text-lg md:text-xl lg:text-3xl font-semibold whitespace-nowrap w-60 max-w-72 overflow-hidden">{{ page.settings.title }}</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="navbar-end space-x-2">
+          <a class="btn btn-sm btn-ghost border-white text-white" href="javascript: window.open('{{ site.url }}/s/ebook?page={{ page.path }}', '_blank').print();">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+            </svg>
+            <span class="hidden lg:flex">打印</span>
+          </a>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-sm btn-accent lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-72 p-2 shadow max-h-[400px] overflow-y-auto">
+              <li>
+                {% # feedback start %}
+                <div class="flex flex-col items-center justify-center w-full space-y-3">
+                  <div class="text-sm lg:text-base">{{ page.settings.description }}</div>
+                  <button class="w-full py-2 px-5 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary-500 hover:text-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-75" :class="{ 'btn-ghost text-primary': {{ page.visitor_posted_feedback }} }" onclick="my_modal_3.showModal()">
+                    {{ 'feedback.title' | t}}
+                  </button>
+                </div>
+                {% # feedback end %}
+              </li>
+              <li class=""></li>
+              {% for sub_page in pages %}
+                <li class="{{ sub_page.id }}"><a href="#{{ sub_page.id }}">{{ sub_page.link_text }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-4 lg:pt-8 bg-slate-100">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <h1 class="sr-only">Page title</h1>
+      <!-- Main 3 column grid -->
+      <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-4 lg:gap-8">
+        <!-- Left column -->
+        <div class="hidden lg:grid grid-cols-1 gap-4 sticky top-24 left-0 right-0">
+          <section aria-labelledby="section-1-title">
+            <h2 class="sr-only" id="section-1-title">Section title</h2>
+            <div class="rounded-lg bg-accent shadow">
+                <!-- ========== MAIN CONTENT ========== -->
+                <div class="flex p-5 md:p-10 xl:gap-20">
+                  <section class="prose md:prose-md max-w-none">
+                    {% # feedback start %}
+                    <div class="flex flex-col items-center justify-center w-full space-y-3">
+                      <div class="text-sm lg:text-base">{{ page.settings.description }}</div>
+                      <button class="w-full py-2 px-5 bg-primary text-white font-semibold rounded-lg shadow-md hover:bg-primary-500 hover:text-secondary focus:outline-none focus:ring focus:ring-secondary focus:ring-opacity-75" :class="{ 'btn-ghost text-primary': {{ page.visitor_posted_feedback }} }" onclick="my_modal_5.showModal()">
+                        {{ 'feedback.title' | t}}
+                      </button>
+                    </div>
+                    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+                      <div class="modal-box">
+                        <form method="dialog">
+                          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                        {% render "feedback_form", page: page %}
+                      </div>
+                    </dialog>
+                    {% # feedback end %}
+                    <div class="divider my-5"></div>
+                    <nav>
+                      <ul class="menu2 h-96 overflow-auto">
+                        {% for sub_page in pages %}
+                          <li class="{{ sub_page.id }}"><a href="#{{ sub_page.id }}">{{ sub_page.link_text }}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </nav>
+                  </section>
+                </div>
+                <!-- ========== END SECONDARY CONTENT ========== -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Right column -->
+        <div class="grid grid-cols-1 gap-4 lg:col-span-3">
+          <section aria-labelledby="section-2-title">
+            <h2 class="sr-only" id="section-2-title">Section title</h2>
+            <div class="w-full overflow-auto">
+              {% for sub_page in pages %}
+                <article id="{{ sub_page.id }}" class="mb-4 p-2 lg:p-4 lg:mb-8 border-2 border-gray-100 rounded-lg shadow-lg bg-white">
+                  {% render 'page', page: sub_page, parent: page %}
+                </article>
+              {% endfor %}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div class="border-t border-gray-200 py-8 text-center text-sm text-gray-500 sm:text-left"><span class="block sm:inline">© 2024 <a href="https://www.baklib.cn">Baklib.</a></span> <span class="block sm:inline">All rights reserved.</span></div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- mobile feedback modal -->
+<dialog id="my_modal_3" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    {% render "feedback_form", page: page %}
+  </div>
+</dialog>
+
+<!-- nav scroll active -->
+<script>
+  const sections = document.querySelectorAll("article");
+  const navLi = document.querySelectorAll("nav ul li");
+  window.onscroll = () => {
+    var current = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 60) {
+        current = section.getAttribute("id"); }
+    });
+
+    navLi.forEach((li) => {
+      li.classList.remove("active");
+      if (li.classList.contains(current)) {
+        li.classList.add("active");
+      }
+    });
+  };
+</script>
+
+{% schema %}
+    {
+    "name": "Page Channel",
+    "description": "The Page as a channel section",
+    "thumb_url": "images/theme/channel.png",
+    "preview_image_urls": [
+      "images/theme/channel.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": "64",
+        "label": "方案公司图标"
+      },
+      {
+        "id": "company_name",
+        "type": "text",
+        "label": "方案公司名称"
+      },
+      {
+        "id": "company_industry",
+        "type": "text",
+        "label": "所属行业"
+      },
+      {
+        "id": "company_industry_description",
+        "type": "textarea",
+        "label": "行业数字化综述"
+      },
+      {
+        "id": "author",
+        "type": "text",
+        "label": "方案作者",
+        "info": "方案撰写人信息"
+      },
+      {
+        "id": "published_at",
+        "type": "text",
+        "label": "发布日期",
+        "default": "2024年7月20日"
+      },
+      {
+        "id": "description",
+        "type": "html",
+        "label": "方案欢迎语",
+        "info": "显示在首页左侧的欢迎语",
+        "default": "你好，<br/>我是您的商务对接人Lisa，与贵公司合作是我的荣幸。"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "内容",
+        "readonly": true,
+        "info": "知识库同步，不可编辑"
+      }
+    ]
+    }
+{% endschema %}

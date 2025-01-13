@@ -1,0 +1,24 @@
+
+<footer class="border-t border-accent-200 print:hidden">
+  {% # 自定义导航菜单 %}
+  {% if site.settings.footer_menu_html %}
+    <div class="mx-auto max-w-screen-xl py-2 md:py-4 space-x-2">
+      {{ site.settings.footer_menu_html }}
+    </div>
+  {% endif %}
+  {% # 底部备案和链接 %}
+  <div class="mx-auto max-w-screen-xl py-2 md:py-4">
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <div class="flex space-x-2 text-sm">
+        <a href="/" class="flex items-center">
+          {% assign logo = 'images/logo.png' | asset_url %}
+          <img src="{{ site.favicon_url | default: logo  }}" class="h-8 mr-3" alt="{{ site.name }} Logo">
+          <span class="self-center text-xl font-semibold whitespace-nowrap">{{ site.name }}</span>
+        </a>
+      </div>
+      <div class="hidden mt-4 space-x-6 sm:flex sm:justify-center sm:mt-0">
+        <div>©  {{ site.settings.company_name }}<span class="md:hidden lg:inline"> {{ 'generic.copyright' | t }}.</span></div>
+      </div>
+    </div>
+  </div>
+</footer>

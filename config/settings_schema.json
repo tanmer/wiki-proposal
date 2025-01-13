@@ -1,0 +1,141 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "proposal",
+    "theme_label": "t:theme_label",
+    "theme_version": "1.0.0",
+    "theme_scope": "wiki",
+    "theme_author": "Baklib",
+    "theme_description": "t:theme_description",
+    "theme_documentation_url": "https://help.baklib.cn/themes/daisy-wiki",
+    "theme_support_url": "https://help.baklib.cn/themes/daisy-wiki/settings",
+    "theme_thumb_url": "images/theme/thumb.png",
+    "theme_preview_images": [
+      "images/theme/proposal.png",
+      "images/theme/index.png",
+      "images/theme/page.png",
+      "images/theme/channel.png",
+      "images/theme/ppt.png"
+    ],
+    "theme_languages": [
+      {
+        "name": "中文简体",
+        "value": "zh-CN"
+      },
+      {
+        "name": "English",
+        "value": "en-US"
+      },
+      {
+        "name": "Germany",
+        "value": "de"
+      },
+      {
+        "name": "France",
+        "value": "fr"
+      }
+    ],
+    "recommendations": {
+      "color_schemas": {
+        "fashion": {
+          "name": "时尚",
+          "colors": {
+            "--theme-color-primary": "#0d9488",
+            "--theme-color-secondary": "#ea580c",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#2196F3",
+            "--theme-color-success": "#4CAF50",
+            "--theme-color-warning": "#FFC107"
+          }
+        },
+        "old_school": {
+          "name": "复古",
+          "colors": {
+            "--theme-color-primary": "#9C27B0",
+            "--theme-color-secondary": "#673AB7",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#418CC8",
+            "--theme-color-success": "#29B52F",
+            "--theme-color-warning": "#FFC107"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "t:settings_schema.generic.name",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "站点名称"
+      },
+      {
+        "id": "description",
+        "type": "text",
+        "label": "站点描述"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.header_name",
+    "settings": [
+      {
+        "id": "header_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.header_menu_html.label",
+        "rows": 10,
+        "placeholder": "<a href='#'> title </a>"
+      },
+      {
+        "id": "footer_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.footer_menu_html.label",
+        "rows": 10,
+        "placeholder": "<a href='#'> title </a>"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.head_title",
+    "settings": [
+      {
+        "id": "head_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.head_html.label",
+        "info": "t:settings_schema.generic.settings.head_html.info",
+        "rows": 10,
+        "placeholder": "t:settings_schema.generic.settings.head_html.placeholder"
+      }
+    ]
+  },
+  {
+    "name": "自定义 HTML 代码块",
+    "settings": [
+      {
+        "id": "features_one",
+        "type": "html",
+        "label": "Features One",
+        "rows": 10,
+        "placeholder": "some html code",
+        "info":"预设的 HTML 代码块，前端调用方法：site.settings.features_one"
+      },
+      {
+        "id": "features_two",
+        "type": "html",
+        "label": "Features Two",
+        "rows": 10,
+        "placeholder": "some html code",
+        "info":"预设的 HTML 代码块，前端调用方法：site.settings.features_two"
+      },
+      {
+        "id": "features_three",
+        "type": "html",
+        "label": "Features Three",
+        "rows": 10,
+        "placeholder": "some html code",
+        "info":"预设的 HTML 代码块，前端调用方法：site.settings.features_three"
+      }
+    ]
+  }
+]

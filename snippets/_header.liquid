@@ -1,0 +1,41 @@
+<header class="sticky top-0 z-30">
+  <nav
+    class="navbar bg-base-100/80 border-b border-base-content/10 backdrop-blur-3xl justify-center items-center py-2 sm:px-0 md:px-20">
+
+    <div class="navbar-start">
+      <a href="/" class="flex-0 btn btn-ghost px-2">
+        <h1 class="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/50">
+          <span class="max-w-72 overflow-hidden">{{ site.name }}</span>
+        </h1>
+      </a>
+    </div>
+
+    <div class="navbar-center hidden lg:flex">
+      <!-- 自定义首页顶部菜单放这里 -->
+      {{ site.settings.header_menu_html }}
+    </div>
+
+    <div title="Menu" class="navbar-end">
+      <!-- 导航菜单 -->
+      <details class="dropdown dropdown-end hidden lg:flex">
+        <summary tabindex="1" class="m-1 btn btn-ghost">
+          {{ 'generic.menu' | t }}
+          <svg width="12px" height="12px" class="hidden h-2 w-2 fill-current opacity-60 sm:inline-block"
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+            <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+          </svg>
+        </summary>
+        <ul tabindex="1" class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+          <li><a class="" href="/s/get-started"> Get Started </a></li>
+          <li><a class="" href="/s/examples"> Examples </a></li>
+        </ul>
+      </details>
+
+      <a class="btn btn-sm btn-ghost btn-square" href="https://baklib.com" aria-label="auth login">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+          <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,63 @@
+{% assign param = params["page"] %}
+{% assign page = site.pages[param] %}
+{% assign pages = page.children_in_list | limit: 50 %}
+{% set_meta_title page.settings.title %}
+
+<section class="flex flex-col items-center h-screen justify-center relative print:hidden">
+  <div class="w-full mx-auto max-w-7xl relative">
+    <div class="max-w-sm mx-auto"
+      style="box-shadow:0 65.2926px 52.2341px rgba(35,35,52,.2), 0 27.2777px 21.8221px rgba(35,35,52,.144), 0 14.584px 11.6672px rgba(35,35,52,.119), 0 8.17564px 6.54052px rgba(35,35,52,.1), 0 4.34202px 3.47362px rgba(35,35,52,.081), 0 1.80681px 1.44545px rgba(35,35,52,.056); background-image: linear-gradient(0deg, rgba(16, 130, 178, 0.58) 0%, rgba(16, 130, 178, 0.58) 13%,rgba(49, 137, 167, 0.58) 13%, rgba(49, 137, 167, 0.58) 42%,rgba(81, 143, 157, 0.58) 42%, rgba(81, 143, 157, 0.58) 49%,rgba(114, 150, 146, 0.58) 49%, rgba(114, 150, 146, 0.58) 58%,rgba(147, 157, 135, 0.58) 58%, rgba(147, 157, 135, 0.58) 69%,rgba(180, 164, 124, 0.58) 69%, rgba(180, 164, 124, 0.58) 74%,rgba(212, 170, 114, 0.58) 74%, rgba(212, 170, 114, 0.58) 78%,rgba(245, 177, 103, 0.58) 78%, rgba(245, 177, 103, 0.58) 100%),linear-gradient(90deg, rgb(180, 56, 238) 0%, rgb(180, 56, 238) 11%,rgb(190, 82, 231) 11%, rgb(190, 82, 231) 22%,rgb(201, 109, 225) 22%, rgb(201, 109, 225) 46%,rgb(211, 135, 218) 46%, rgb(211, 135, 218) 60%,rgb(222, 161, 212) 60%, rgb(222, 161, 212) 65%,rgb(232, 187, 205) 65%, rgb(232, 187, 205) 87%,rgb(243, 214, 199) 87%, rgb(243, 214, 199) 92%,rgb(253, 240, 192) 92%, rgb(253, 240, 192) 100%);">
+      <div class="grid grid-cols-12 text-white">
+        <div class="col-span-1 flex border-r border-gray-400 py-64"></div>
+        <div class="col-span-11 flex flex-col justify-between p-6">
+          <div class="mt-12">
+            <p class="text-base">{{ page.settings.company_name }}</p>
+            <p class="text-3xl mt-3 lg:text-5xl font-medium leading-none">
+              {{ page.settings.title }}.数字内容体验云平台官网介绍
+            </p>
+          </div>
+          <div class="flex flex-col justify-between text-xs w-full">
+            <p>作者：{{ page.settings.author }}</p>
+            <p>日期：{{ page.settings.published_at }}</p>
+            <p>公司：<a href="https://www.baklib.cn" target="_blank">Baklib 数字内容体验云</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-7xl mx-auto bg-white -mt-24">
+  <div class="flex justify-between bg-primary p-4 print:hidden sticky top-0 left-0 z-50">
+    <div class="text-center">
+      <h1 class="flex items-center">
+        {% assign logo = 'images/logo.png' | asset_url %}
+        <img src="{{ page.settings.icon | default: logo  }}" class="h-10 mr-2" alt="{{ page.settings.title }} Logo">
+        <span class="self-center text-white  text-lg md:text-xl lg:text-3xl font-semibold whitespace-nowrap">
+          {{ page.settings.title }}</span>
+      </h1>
+    </div>
+    <div class="flex space-x-2">
+      <a href="#down" class="btn btn-secondary flex">
+        预 览
+      </a>
+      <button onclick="javascript:window.print();" class="btn btn-primary flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z" />
+        </svg>
+        打 印
+      </button>
+    </div>
+  </div>
+  <section class="p-5 md:p-10 md:pt-10 xl:gap-20">
+    {%# 注意：因为排版原因，eBook 不打印 Page 中 HTML Content 里的内容，而是打印知识库中对应的内容 %}
+    {% for sub_page in pages %}
+      <article id="{{ sub_page.id }}" class="mb-4 p-2 lg:mb-8 lg:p-8 ">
+        <a name="down"></a>
+        {% render 'page', page: sub_page, parent: page %}
+      </article>
+    {% endfor %}
+
+  </section>
+</div>

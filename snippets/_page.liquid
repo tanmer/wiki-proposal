@@ -1,0 +1,59 @@
+{% assign sections = ['section_contact01', 'section_contact02', 'section_faq01', 'section_features01', 'section_features02', 'section_hero01', 'section_hero02', 'section_platform_hero', 'section_platform_what', 'section_platform_who', 'section_platform_why', 'section_team01', 'section_team02', 'section_testimonial', 'section_timeline'] %}
+{% assign handle = page.settings.show_type.value %}
+
+{% case handle %}
+  {% when "template" %}
+    {% case page.settings.template.value %}
+    {% when "section_contact01" %}
+      {% render "section_contact01", page: page, parent: parent %}
+    {% when "section_contact02" %}
+        {% render "section_contact02", page: page, parent: parent %}
+    {% when "section_faq01" %}
+        {% render "section_faq01", page: page, parent: parent %}
+    {% when "section_features01" %}
+        {% render "section_features01", page: page, parent: parent %}
+    {% when "section_features_all" %}
+        {% render "section_features_all", page: page, parent: parent %}
+    {% when "section_features02" %}
+        {% render "section_features02", page: page, parent: parent %}
+    {% when "section_hero01" %}
+        {% render "section_hero01", page: page, parent: parent %}
+    {% when "section_hero02" %}
+        {% render "section_hero02", page: page, parent: parent %}
+    {% when "section_hero03" %}
+        {% render "section_hero03", page: page, parent: parent %}
+    {% when "section_platform_hero" %}
+        {% render "section_platform_hero", page: page, parent: parent %}
+    {% when "section_platform_what" %}
+        {% render "section_platform_what", page: page, parent: parent %}
+    {% when "section_platform_who" %}
+        {% render "section_platform_who", page: page, parent: parent %}
+    {% when "section_platform_why" %}
+        {% render "section_platform_why", page: page, parent: parent %}
+    {% when "section_team01" %}
+        {% render "section_team01", page: page, parent: parent %}
+    {% when "section_team02" %}
+        {% render "section_team02", page: page, parent: parent %}
+    {% when "section_testimonial" %}
+        {% render "section_testimonial", page: page, parent: parent %}
+    {% when "section_timeline" %}
+        {% render "section_timeline", page: page, parent: parent %}
+    {% else %}
+    {% endcase %}
+  {% when "html" %}
+    {{ page.settings.html }}
+  {% else %}
+    <h1 class="text-center mb-2 text-2xl font-bold sm:text-3xl xl:text-4xl">
+      {{ page.settings.title }}
+    </h1>
+    <div class="mt-8 flow-root">
+      <div class="overflow-auto">
+        <div data-controller="view_images2"
+          class="ProseMirror">
+          {{ page.settings.content }}
+        </div>
+      </div>
+    </div>
+{% endcase %}
+
+

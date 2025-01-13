@@ -1,0 +1,164 @@
+{% assign pages = page.children_in_list %}
+{%# pages2 for menu nav %}
+{% assign pages2 = page.children_in_list %}
+
+<section class="h-screen overflow-auto bg-gradient-to-r from-orange-100 from-10% via-blue-100 via-30% to-teal-100 to-90%">
+  <turbo-frame id="main-content">
+    {% paginate_tag pages, per: 1 %}
+      <div class="max-w-7xl mx-auto min-h-screen items-center content-center">
+        {% for sub_page in pages %}
+          <!-- ========== MAIN CONTENT ========== -->
+          <article id="{{ sub_page.id }}" class="border border-secondary/30 rounded-lg shadow-lg bg-white mb-20">
+            {% render 'page', page: sub_page, parent: page %}
+          </article>
+        {% endfor %}
+      </div>
+      <!-- ========== END SECONDARY CONTENT ========== -->
+      <!-- Footer Section -->
+      <div class="btm-nav bg-slate-600 text-white border-t border-teal-100">
+
+        {% if paginate.total_pages > 1 %}
+          {% comment %} 上一页 {% endcomment %}
+          <a {% if paginate.prev_page %}href="{{ paginate.url_for[paginate.prev_page] }}"{% else %}disabled{% endif %} class="">
+            <span class="sr-only">Previous</span>
+            <svg class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+            </svg>
+            <span class="btm-nav-label text-xs">上一页</span>
+          </a>
+        {% endif %}
+
+        <div class="items-center justify-center">
+          <div class="dropdown dropdown-top dropdown-center">
+            <div tabindex="0">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+              <span class="btm-nav-label text-xs">导航</span>
+            </div>
+            <ul tabindex="0" class="dropdown-content bg-primary rounded-box z-50 p-2 w-[660px] shadow max-h-[600px] overflow-auto grid grid-cols-1 lg:grid-cols-3 gap-4">
+              {% for sub_page in pages2 %}
+                <li class="border-b border-dotted"><a href="{{paginate.url_for[forloop.index]}}" class="flex">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                  </svg>
+                  {{ sub_page.link_text }}</a></li>
+              {% endfor %}
+              <li class="border-b border-dotted">
+                <a class="flex" href="javascript: window.open('{{ site.url }}/s/ebook?page={{ page.path }}', '_blank').print();">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5 h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                  </svg>
+                  <span class="">方案下载</span>
+                </a>
+              </li>
+              <li class="border-b border-dotted">
+                {% # feedback start %}
+                <button class="flex items-center" :class="{ 'bg-primary text-white': {{ page.visitor_posted_feedback }} }" onclick="my_modal_4.showModal()">
+                  <svg t="1698223767490" class="w-5 h-5" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="4875">
+                    <path
+                      d="M1000.59 407.182c-26.679-43.859-67.358-67.449-120.938-70.119-3.23-0.38-6.32-0.57-9.32-0.57l-172.356-0.59c7.819-34.839 11.979-70.079 11.979-102.798 0-33.489-3.66-67.259-10.89-100.388a41.025 41.025 0 0 0-2.36-7.35c-18.68-68.139-79.099-115.118-149.337-115.118-83.269 0-146.058 68.279-146.058 158.817l-0.061 2.28c-0.08 2.39-0.17 5.46 0.01 9.02-3.569 94.348-81.148 176.707-177.807 188.767l-136.178 2.19c-2.24-0.2-4.48-0.3-6.72-0.3-44.209 0-80.178 36.369-80.178 81.039l-0.37 481.182c0 44.369 35.989 80.479 80.229 80.479l149.368 0.03h0.08l567.93-0.98h0.011c31.429 0 51.139-8.8 74.589-24.02a158.319 158.319 0 0 0 54.589-60.578c4.33-6.98 7.55-14.44 9.59-22.22 0.13-0.511 0.26-1.021 0.37-1.521l84.648-381.714a81.977 81.977 0 0 0 2.33-22.699c1.82-32.89-6.16-64.939-23.15-92.839zM82.305 453.161c1.24 0.1 2.49 0.14 3.73 0.12l98.918-1.6v480.142l-103.028-0.02 0.38-478.642z m859.257 51.259l-84.419 380.673h-0.02a39.79 39.79 0 0 0-2.71 4.7c-6.15 12.5-15.2 22.699-26.84 30.27-14.989 9.729-19.319 10.79-30.369 10.79h-0.011l-530.321 0.915V444.231c122.238-30.1 212.877-137.708 216.337-263.466 0.05-1.68 0.03-2.8-0.13-4.48-0.021-0.78 0.02-1.56 0.05-2.35 0.05-1.61 0.09-3.23 0.09-4.87 0-38.22 22.04-76.899 64.149-76.899 34.129 0 63.408 24.02 71.208 58.399 0.44 1.92 1.011 3.78 1.7 5.57 5.15 25.48 7.76 51.339 7.76 76.969 0 40.479-8.31 87.989-22.789 130.318a40.914 40.914 0 0 0 5.39 37.02 40.906 40.906 0 0 0 33.22 17.2l226.506 0.81c1.36 0.19 2.72 0.31 4.09 0.37 26.83 1.1 43.63 10.34 56.159 30.949 8.561 14.06 12.45 30.35 11.25 47.109-0.15 2.02-0.12 4.12 0.04 6.14-0.121 0.47-0.241 0.93-0.34 1.4z"
+                      fill="currentColor" p-id="4876"></path>
+                  </svg>
+                  <span class="">{{ 'feedback.title' | t}}</span>
+                </button>
+                {% # feedback end %}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {% if paginate.total_pages > 1 %}
+          {% comment %} 下一页 {% endcomment %}
+          <a {% if paginate.next_page %}href="{{ paginate.url_for[paginate.next_page] }}"{% else %}disabled{% endif %} class="">
+            <span class="sr-only">Next</span>
+            <svg class="w-6 h-6" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
+            <span class="btm-nav-label text-xs">下一页</span>
+          </a>
+        {% endif %}
+      </div>
+    {% endpaginate_tag %}
+  </turbo-frame>
+</section>
+
+<!-- mobile feedback modal -->
+<dialog id="my_modal_4" class="modal modal-middle sm:modal-middle">
+  <div class="modal-box bg-white w-11/12 max-w-5xl">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+    {% render "feedback_form", page: page %}
+  </div>
+</dialog>
+
+{% schema %}
+    {
+    "name": "PPT Slider Page",
+    "description": "The page as a PPT slider section",
+    "thumb_url": "images/theme/ppt.png",
+    "preview_image_urls": [
+      "images/theme/ppt.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": "64",
+        "label": "方案公司图标"
+      },
+      {
+        "id": "company_name",
+        "type": "text",
+        "label": "方案公司名称"
+      },
+      {
+        "id": "company_industry",
+        "type": "text",
+        "label": "所属行业"
+      },
+      {
+        "id": "company_industry_description",
+        "type": "textarea",
+        "label": "行业数字化综述"
+      },
+      {
+        "id": "author",
+        "type": "text",
+        "label": "方案作者",
+        "info": "方案撰写人信息"
+      },
+      {
+        "id": "published_at",
+        "type": "text",
+        "label": "发布日期",
+        "default": "2024年7月20日"
+      },
+      {
+        "id": "description",
+        "type": "html",
+        "label": "方案欢迎语",
+        "info": "显示在首页左侧的欢迎语",
+        "default": "你好，<br/>我是您的商务对接人Lisa，与贵公司合作是我的荣幸。"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "内容",
+        "readonly": true,
+        "info": "知识库同步，不可编辑"
+      }
+    ]
+    }
+{% endschema %}

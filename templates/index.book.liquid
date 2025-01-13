@@ -1,0 +1,43 @@
+<div class="h-screen hero bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-7xl">
+      <h1 class="text-5xl font-bold leading-normal">{{ site.settings.title |  default: site.name }}</h1>
+      <p class="p-2">{{ site.settings.description }}</p>
+      <div class="my-5">
+        {{ site.settings.header_menu_html }}
+        <a href="/s/get-started" class="btn btn-primary">Get Started</a>
+        <a href="/s/examples" target="_blank" class="btn btn-secondary">Examples</a>
+      </div>
+      <div class="relative">
+        <div class="mockup-window bg-base-300 border">
+          <div class="bg-base-200 flex justify-center">
+            <img src="{{ 'images/theme/ppt.png' | asset_url }}" class="max-w-5xl"/>
+          </div>
+        </div>
+        <div class="mockup-phone absolute bottom-0 -right-10">
+          <div class="camera"></div>
+          <div class="display">
+            <div class="artboard artboard-demo phone-1">
+              <img src="{{ 'images/theme/mobile.png' | asset_url }}" class="w-full"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Book",
+    "description": "Ideal for feature-rich Book site",
+    "thumb_url": "images/theme/ebook-cover.png",
+    "preview_image_urls": [
+      "images/theme/ebook-cover.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+
+      ]
+  }
+{% endschema %}

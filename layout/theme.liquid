@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ site.language }}" class="">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% meta_tags %}
+    {{ 'css/viewer.min.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'javascripts/main.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
+    {{ 'css/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+
+    {%# TIPS：在低代码平台开发时，请打开下一行代码注释 %}
+    {% if false %}
+      {%# 切换theme主题色 <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script> %}
+      {{  'javascripts/theme-change-2.0.2.js' | asset_url | script_tag: data-turbo-track: 'reload' }}
+      <link href="https://unpkg.com/daisyui@latest/dist/full.css" rel="stylesheet">
+      {%# <script src="https://cdn.tailwindcss.com"></script> %}
+    {% endif %}
+    {% if false %}
+      {{ 'javascripts/cdn.tailwindcss.js' | asset_url | script_tag: data-turbo-track: 'reload' }}
+    {% endif %}
+
+    {{ site.settings.head_html }}
+  </head>
+  <body class="min-h-screen overflow-auto bg-slate-100">
+    <!-- Main Content -->
+    {{ content_for_layout }}
+  </body>
+</html>

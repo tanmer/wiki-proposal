@@ -1,0 +1,75 @@
+{% comment %} 页面内容部分 {% endcomment %}
+<turbo-frame id="main-content">
+  <div class="flex p-5 md:p-10 md:pt-10 xl:gap-20 max-w-full overflow-x-auto">
+    {% render 'page', page: page %}
+  </div>
+</turbo-frame>
+
+
+{% schema %}
+  {
+    "name": "Page Detail",
+    "description": "The content page template",
+    "thumb_url": "images/theme/page.png",
+    "preview_image_urls": [
+      "images/theme/page.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "show_type",
+        "type": "radio",
+        "choices": [{"label":"知识库内容","value":"content"},{"label":"来自模板","value":"template"},{"label":"自定义HTML","value":"html"}],
+        "default": "content",
+        "label": "选择显示的内容",
+        "info": "根据不同的展示方式，补充下方的值"
+      },
+      {
+        "id": "template",
+        "type": "select",
+        "default": "section_team",
+        "choices": [
+          {"label":"section_hero01-关于产品","value":"section_hero01"},
+          {"label":"section_hero02-关于公司","value":"section_hero02"},
+          {"label":"section_hero03-关于公司","value":"section_hero03"},
+          {"label":"section_what-产品是什么","value":"section_platform_what"},
+          {"label":"section_features_all-产品特性All","value":"section_features_all"},
+          {"label":"section_features01-产品特性12项","value":"section_features01"},
+          {"label":"section_features02-产品特性6项","value":"section_features02"},
+          {"label":"section_口号-用数字说话","value":"section_platform_hero"},
+          {"label":"section_who-产品谁在用","value":"section_platform_who"},
+          {"label":"section_why-为什么要用 产品","value":"section_platform_why"},
+          {"label":"section_team01-团队介绍3人","value":"section_team01"},
+          {"label":"section_team02-团队介绍集体照","value":"section_team02"},
+          {"label":"section_testimonial-客户感言","value":"section_testimonial"},
+          {"label":"section_faq01-常见问题","value":"section_faq01"},
+          {"label":"section_timeline-项目进度","value":"section_timeline"},
+          {"label":"section_contact01-联系阿倩","value":"section_contact01"},
+          {"label":"section_contact02-联系Lisa","value":"section_contact02"}
+        ],
+        "label": "选择模板",
+        "info": "模板的预览效果，请见 /s/examples"
+      },
+      {
+        "id": "html",
+        "type": "html",
+        "label": "自定义 HTML",
+        "info": "自行复制 HTML 代码作为展示内容"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "t:settings_schema.page.settings.content.label",
+        "readonly": true,
+        "info": "t:settings_schema.page.settings.content.info"
+      }
+    ]
+  }
+{% endschema %}
